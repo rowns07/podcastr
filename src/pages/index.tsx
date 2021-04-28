@@ -1,14 +1,13 @@
-import { useContext, useEffect } from "react";
-import api from './../services/api.js';
-import { GetStaticProps } from 'next';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
-import styles from './home.module.scss';
+import { GetStaticProps } from 'next';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { PlayerContext } from "../context/PlayerContext";
+import { useRouter } from 'next/router';
+import { usePlayer } from "../context/PlayerContext";
+import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
+import api from './../services/api.js';
+import styles from './home.module.scss';
 
 
 type Episode = {
@@ -30,7 +29,7 @@ type HomeProps = {
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   const router = useRouter();
-  const { playList } = useContext(PlayerContext);
+  const { playList } = usePlayer();
 
   const episodeList = [...latestEpisodes, ...allEpisodes];
 

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { PlayerContext } from '../../context/PlayerContext';
+import { useEffect, useRef, useState } from 'react';
+import { usePlayer } from '../../context/PlayerContext';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 import styles from './styles.module.scss';
 
@@ -25,7 +25,7 @@ export function Player() {
     hasPrevious,
     toggleLoop,
     toggleShuffle
-  } = useContext(PlayerContext);
+  } = usePlayer();
 
   const episode = episodeList[currentEpisodeIndex];
 
